@@ -1,8 +1,18 @@
-const fizzbuzz = () => {
-  // Add your code here
+const fizzbuzz = (number) => {
+  
+    for (let i = 1; i <= number; i++) {
+      let response = "";
+      if (i % 3 === 0) 
+      response += "fizz"
+      if (i % 5 === 0) 
+      response += "buzz"
+      if (response === "") 
+      response = i;
+      console.log(response);
+    }
 };
 
-fizzbuzz();
+fizzbuzz(100);
 // 1
 // 2
 // fizz
