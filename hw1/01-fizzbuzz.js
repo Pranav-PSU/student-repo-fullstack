@@ -1,14 +1,13 @@
 const fizzbuzz = (number) => {
-  let response = "";
-  for (let i = 1; i <= number; i++) {
-    if (i % 3 === 0) response += "fizz";
-    if (i % 5 === 0) response += "buzz";
-    if (response === "") response = i;
-    console.log(response);
-    response = "";
-  }
+    let response = '';
+    for (let i = 1; i <= number; i++) {
+        if (i % 3 === 0) response += 'fizz';
+        if (i % 5 === 0) response += 'buzz';
+        if (response === '') response = i;
+        console.log(response);
+        response = '';
+    }
 };
-
 fizzbuzz(100);
 // 1
 // 2
