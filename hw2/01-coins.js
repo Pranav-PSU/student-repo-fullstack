@@ -24,16 +24,6 @@ const calculateChange = (input) => {
     const pennies = Math.round(remainder * 100);
     coins.push({ count: pennies, noun: `${pennies == 1 ? 'penny' : 'penn'}`, suffix: 'ies' });
 
-    // console.log(
-    //     `${pluralize(dollers, 'doller')}, ${pluralize(quarters, 'quarter')}, ${pluralize(
-    //         dimes,
-    //         'dime'
-    //     )}, ${pluralize(nickles, 'nikel')}, ${pluralize(
-    //         pennies,
-    //         `${pennies == 1 ? 'penny' : 'penn'}`,
-    //         'ies'
-    //     )}`
-    // );
     let outputString = '';
     coins.forEach((ele) => {
         if (ele.count != 0) outputString += pluralize(ele);
