@@ -8,12 +8,19 @@ const getData = (url) => {
             return data.json();
         })
         .then((response) => {
-            response.forEach((ele, ind) => {
-                console.log(`${++ind}. ${ele.name.common}-${ele.population}`);
-                var li = document.createElement('li');
-                li.appendChild(document.createTextNode(` ${ele.name.common} - ${ele.population}`));
-                results.appendChild(li);
-            });
+            if (response.length != 0) {
+                response.forEach((ele, ind) => {
+                    console.log(`${++ind}. ${ele.name.common}-${ele.population}`);
+                    var li = document.createElement('li');
+                    li.appendChild(
+                        document.createTextNode(` ${ele.name.common} - ${ele.population}`)
+                    );
+                    results.appendChild(li);
+                });
+            } else {
+                results.innerHTML = 'Something Went Wrong';
+                return false;
+            }
         });
 };
 
