@@ -18,9 +18,13 @@ const getData = (url) => {
                     results.appendChild(li);
                 });
             } else {
-                results.innerHTML = 'Something Went Wrong';
+                results.innerHTML = 'No data Found';
                 return false;
             }
+        })
+        .catch((err) => {
+            results.innerHTML = 'Something Went Wrong';
+            console.log(err);
         });
 };
 
