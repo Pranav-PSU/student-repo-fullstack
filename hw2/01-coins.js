@@ -4,7 +4,9 @@ const pluralize = ({ count, noun, suffix = 's' }) => {
 const calculateChange = (input) => {
     let coins = [];
     let remainder = 0;
-
+    if (input > 10) {
+        return `Error: the number is too large`;
+    }
     const dollers = Math.floor(input);
     remainder = input - dollers;
     coins.push({ count: dollers, noun: 'doller' });
@@ -28,6 +30,7 @@ const calculateChange = (input) => {
     coins.forEach((ele) => {
         if (ele.count != 0) outputString += pluralize(ele);
     });
+
     console.log(outputString);
 };
 calculateChange(4.87);
