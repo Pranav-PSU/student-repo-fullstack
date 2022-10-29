@@ -1,6 +1,6 @@
-## Homework 0 - Git / Setup
+## Instructions for Setup
 
-### Installation
+### What to Install
 
 1. Install [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git).
 
@@ -10,9 +10,8 @@
 
    - Install the following extensions:
      - Live Server
-     - Git Lens
-     - Bracket Pair Colorizer
      - Prettier
+     - Git Lens
 
 3. Sign up for a GitHub account and the [GitHub Student Pack](https://education.github.com/pack).
 
@@ -55,12 +54,12 @@ homework	git@github.com:caterinasworld/fullstack-homework.git (push)
 
    Important: Do not create a README file. There’s already one in the repository you have cloned.
 
-4. Add your TA as a collaborator.
+4. Add your TA and all your discussion group members as collaborators.
 
-   Go to ‘Settings’ → ‘Manage Access’ → click the “Invite a collaborator’ button. Search for your TA’s username.
-   Check Canvas for your TA's username on GitHub.
+   Go to ‘Settings’ → ‘Manage Access’ → click the “Invite a collaborator’ button. Search for everyone's names or GitHub handles. 
+   All GitHub handles were shared during the first discussion. See the Canvas home page for your TA's GitHub handle.
 
-5. Add the private GitHub repository you created as a remote.
+5. Add the GitHub repository you created as a remote.
 
 ```console
 $ git remote add origin git@github.com:student-username/student-repo-fullstack.git
@@ -80,7 +79,7 @@ $ git branch
 $ git branch -M main
 ```
 
-7. Push the files you cloned into the newly created private remote repository.
+7. Push the files you cloned into the newly created remote repository.
 
 ```console
 $ git push -u origin main
@@ -107,3 +106,46 @@ $ git push
 ```console
 $ git pull homework main
 ```
+
+### Submitting a Pull Request (PR)
+
+1. Create a new branch. 
+
+```console
+$ git branch <newbranch>
+$ git checkout <newbranch>
+
+or
+
+$ git checkout -b <newbranch>
+```
+
+2. Make changes to your code in that branch.
+
+3. Commit the changes to the remote.
+
+```console
+$ git add <filename>
+
+$ git commit -m <commitmessage>
+
+$ git push <remote> <branchname>
+```
+
+4. When your code is pushed to the remote, you will see a link to the PR in the commnand line. Alternatively, you can open the remote repository on GitHub and search for your PR in the "Pull requests" tab. 
+
+5. Add your TA and two students from the discussion group as reviewers on the pull request.
+
+   In the description textarea, make sure to explain what changes you made, why you made those changes, and what feedback you are looking for.
+
+### Required Reading
+
+- Use the [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript) for all JavaScript code submitted.
+- [How to Create a Pull Request | GitHub](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request)
+- [How to write the description for your pull request or for how to give feedabck](https://github.blog/2015-01-21-how-to-write-the-perfect-pull-request/)
+- Examples of pull requests:
+  - [Pull request in Fastify.js](https://github.com/fastify/fastify/pull/4264)
+  - [Pull request in GitHub Primer](https://github.com/primer/react/pull/2337)
+
+
+
