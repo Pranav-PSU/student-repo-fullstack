@@ -31,60 +31,74 @@ const server = http.createServer((req, res) => {
 
         return result;
     };
-
-    if (req.url === '/') {
-        let routeResults = getRoutes();
-
-        res.writeHead(200, { 'Content-Type': 'text/html' });
-        res.write(`<h1>Exercise 01</h1>`);
-        res.write(`<ul> ${routeResults} </ul>`);
-        res.end();
-    }
-
     // Add your code here
-    else if (req.url === '/welcome') {
-        res.writeHead(200, { 'Content-Type': 'text/html' });
-        res.write('<h2>Hello there..! This is a welcome page.</h1>');
-        res.end();
-    } else if (req.url === '/redirect') {
-        res.writeHead(302, { Location: '/redirected' });
-        res.end();
-    } else if (req.url === '/redirected') {
-        res.writeHead(200, { 'Content-Type': 'text/html' });
-        res.write('<h2>Hello again..! You are successfully redirected to /redirected page.</h1>');
-        res.end();
-    } else if (req.url === '/cache') {
-        res.writeHead(200, {
-            'Content-Type': 'text/html',
-            'Cache-Control': 'max-age = 86400',
-        }); // Because there are 86400 seconds in a day
-        res.write('<H2>This Resource Was Cached</H2>');
-        res.end();
-    } else if (req.url === '/cookie') {
-        res.writeHead(200, {
-            'Content-Type': 'text/plain',
-            'Set-Cookie': 'hello=world',
-        });
-        res.write('cookies... yummm');
-        res.end();
-    }
+    switch (req.url) {
+        case '/': {
+            let routeResults = getRoutes();
 
-    //Check-Cookies route
-    else if (req.url === '/check-cookies') {
-        res.writeHead(200, {
-            'Content-Type': 'text/plain',
-        });
-        let present = req.headers.cookie.split(';').some((item) => item.trim().startsWith('hello='))
-            ? 'yes'
-            : 'no';
-        res.write(present);
-        res.end();
-    } else {
-        res.writeHead(404, {
-            'Content-Type': 'text/html',
-        });
-        res.write('404 - page not found');
-        res.end();
+            res.writeHead(200, { 'Content-Type': 'text/html' });
+            res.write(`<h1>Exercise 01</h1>`);
+            res.write(`<ul> ${routeResults} </ul>`);
+            res.end();
+            break;
+        }
+        case '/welcome': {
+            res.writeHead(200, { 'Content-Type': 'text/html' });
+            res.write('<h2>Hello there..! This is a welcome page.</h1>');
+            res.end();
+            break;
+        }
+        case '/redirect': {
+            res.writeHead(302, { Location: '/redirected' });
+            res.end();
+            break;
+        }
+        case '/redirected': {
+            res.writeHead(200, { 'Content-Type': 'text/html' });
+            res.write(
+                '<h2>Hello again..! You are successfully redirected to /redirected page.</h1>'
+            );
+            res.end();
+            break;
+        }
+        case '/cache': {
+            res.writeHead(200, {
+                'Content-Type': 'text/html',
+                'Cache-Control': 'max-age = 86400',
+            }); // Because there are 86400 seconds in a day
+            res.write('<H2>This Resource Was Cached</H2>');
+            res.end();
+            break;
+        }
+        case '/cookie': {
+            res.writeHead(200, {
+                'Content-Type': 'text/plain',
+                'Set-Cookie': 'hello=world',
+            });
+            res.write('cookies... yummm');
+            res.end();
+            break;
+        }
+        case '/check-cookies': {
+            res.writeHead(200, {
+                'Content-Type': 'text/plain',
+            });
+            let present = req.headers.cookie
+                .split(';')
+                .some((item) => item.trim().startsWith('hello='))
+                ? 'yes'
+                : 'no';
+            res.write(present);
+            res.end();
+            break;
+        }
+        default: {
+            res.writeHead(404, {
+                'Content-Type': 'text/html',
+            });
+            res.write('404 - page not found');
+            res.end();
+        }
     }
 });
 

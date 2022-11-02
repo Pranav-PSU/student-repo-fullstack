@@ -28,8 +28,6 @@ const server = http.createServer((req, res) => {
         res.write(`<h1>Exercise 02</h1>`);
 
         res.write(`<ul> ${routeResults} </ul>`);
-    } else if (req.url === '/attributes/') {
-        console.log(req.query);
     }
 
     const queryParameters = url.searchParams;
