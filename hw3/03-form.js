@@ -15,8 +15,8 @@ const server = http.createServer((req, res) => {
         const queryParameters = url.searchParams;
         let text = '';
         queryParameters.forEach((Value, Key) => {
-            if (Key == 'Newsletter') {
-                Value == 'true'
+            if (Key === 'Newsletter') {
+                Value === 'true'
                     ? (Value = 'Yes, I would like to join the newsletter')
                     : (Value = 'No, thank you.');
             }
