@@ -22,10 +22,13 @@ app.use((req, res, next) => {
     if (req.session.previouslyVisited) {
         req.session.previouslyVisited.push(`${req.url}`);
         let resp = 'Previously Visited';
-        let pv = req.session.previouslyVisited.join('\n');
-        res.write(resp + '\n' + pv);
+        let previouslyVisitedPaths = req.session.previouslyVisited
+            .slice(0, req.session.previouslyVisited.length - 1)
+            .join('\n');
+        res.write(resp + '\n' + previouslyVisitedPaths);
     } else {
         req.session.previouslyVisited = [];
+        res.write(`Welcome to ${req.protocol + '://' + req.get('host') + req.originalUrl}\n\n`);
         req.session.previouslyVisited.push(`${req.url}`);
     }
     next();
