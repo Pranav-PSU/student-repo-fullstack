@@ -78,7 +78,7 @@ async function getCountries(data) {
     await axios
         .get(url)
         .then(function (response) {
-            if (response.status === 200) data(response.data);
+            if (response.status == 200) data(response.data);
             else throw 'Something went wrong';
         })
         .catch(function (error) {
