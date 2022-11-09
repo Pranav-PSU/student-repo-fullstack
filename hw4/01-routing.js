@@ -12,38 +12,48 @@ const port = process.env.PORT || 5001;
 
 // For other routes, such as http://localhost:5001/other, this exercise should return a status code 404 with '404 - page not found' in html format
 
-const routes = [
-  'welcome',
-  'redirect',
-  'redirected',
-  'cache',
-  'cookie',
-  'other',
-];
+const routes = ['welcome', 'redirect', 'redirected', 'cache', 'cookie', 'other'];
 
 let getRoutes = () => {
-  let result = '';
-
-  routes.forEach(
-    (elem) => (result += `<li><a href="/${elem}">${elem}</a></li>`)
-  );
-
-  return result;
+    let result = '';
+    routes.forEach((elem) => (result += `<li><a href="/${elem}">${elem}</a></li>`));
+    return result;
 };
 
 app.get('/', (req, res) => {
-  let routeResults = getRoutes();
-
-  res.writeHead(200, { 'Content-Type': 'text/html' });
-  res.write(`<h1>Exercise 04</h1>`);
-  res.write(`<ul> ${routeResults} </ul>`);
-  res.end();
+    let routeResults = getRoutes();
+    res.set('Content-Type', 'text/html');
+    res.status(200).send(`<h2>Exercise 04</h2> <ul> ${routeResults} </ul>`);
 });
 
-app.get('/welcome', (req, res) => {});
+app.get('/welcome', (req, res) => {
+    res.set('Content-Type', 'text/html');
+    res.status(200).send('<h2>Hello there..! This is a welcome page.</h2>');
+});
 
-// Add your code here
+app.get('/redirect', (req, res) => {
+    res.redirect(302, '/redirected');
+});
+app.get('/redirected', (req, res) => {
+    res.send('Redirected here');
+});
+app.get('/cache', (req, res) => {
+    res.set({
+        'content-type': 'text/html',
+        'Cache-control': 'max-age = 86400',
+    });
+    res.send('<h2>this resource was cached</h2>');
+});
+app.get('/cookie', (req, res) => {
+    res.set({ 'Content-Type': 'text/plain' });
+    res.cookie('hello', 'world');
+    res.send('cookies... yummm');
+});
+app.get('*', (req, res) => {
+    res.set({ 'Content-Type': 'text/html' });
+    res.send('<h2>404 - page not found<h2>');
+});
 
 app.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}`);
+    console.log(`Server running at http://localhost:${port}`);
 });
